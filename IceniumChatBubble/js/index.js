@@ -16,7 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+
 var app = {
+   
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -27,14 +30,24 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+       
+        var b=document.getElementById("mobile-button1");
+        b.addEventListener("click", function(){
+                                   
+            $( "#bubbleDiv" ).append( "<div class='bubble' style='margin-top:20px;margin-left:"+ getSidePixels() +"'></div>" );
+            
+        });
+       
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+      
         app.receivedEvent('deviceready');
         navigator.splashscreen.hide();
+        
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -47,4 +60,19 @@ var app = {
 
         console.log('Received Event: ' + id);
     }
+
 };
+
+var side = 'left';
+
+function getSidePixels() {
+    
+    if (side == 'left') {
+        side = 'right';
+        return '20px';
+    } else {
+        side = 'left';
+        return '120px';
+    }
+    
+}
